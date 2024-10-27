@@ -1,0 +1,64 @@
+# Archivos del sistema y carpetas innecesarias
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Carpeta Library (Unity genera los archivos necesarios automáticamente)
+[Ll]ibrary/
+
+# Carpetas temporales y de compilación
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Logs/
+MemoryCaptures/
+
+# Archivos de configuración de Visual Studio y MonoDevelop
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.idea/
+.vs/
+
+
+# Archivos de metadatos y carpetas de Unity específicas
+ProjectSettings/AudioManager.asset
+ProjectSettings/BuildSettings.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/EditorSettings.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/InputManager.asset
+ProjectSettings/NavMeshAreas.asset
+ProjectSettings/NetworkManager.asset
+ProjectSettings/Physics2DSettings.asset
+ProjectSettings/QualitySettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/TimeManager.asset
+ProjectSettings/UnityConnectSettings.asset
+ProjectSettings/VFXManager.asset
+
+# Paquetes y dependencias que se pueden regenerar
+Assets/AssetStoreTools*
+Assets/Plugins/Editor/
+Assets/StreamingAssets/
+
+# Archivos y carpetas de paquetes externos como Node, Yarn y JetBrains
+node_modules/
+.idea/
+.yarn/
+dist/
+*.log
+
+# Paquetes y otros archivos de exportación
+*.apk
+*.aab
+*.unitypackage
