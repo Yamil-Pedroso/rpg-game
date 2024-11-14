@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
 
-    public float moveSpeed;
-    public float jumpForce;
-    public float xInput;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
+
+    private float xInput;
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         //rb.linearVelocity = new Vector2(0, 10); 
     }
 
