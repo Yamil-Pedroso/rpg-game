@@ -18,29 +18,27 @@ public class Player : MonoBehaviour
 
     [Header("Collision info")]
     [SerializeField] private float groundCheckDistance;
-    [SerializeField] private LayerMask whatIsGround;
     private bool isGrounded;
+
+    [SerializeField] private LayerMask whatIsGround;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-        //rb.linearVelocity = new Vector2(0, 10); 
+        //rb.linearVelocity = new Vector2(0, 10);
     }
 
     void Update()
     {
-        Movement();
+        HandleCollision();
         CheckInput();
-
-        CollisionChecks();
-       
-        FlipController();
+        Movement();
         AnimatorControllers();
-
+        HandleFlip();
     }
 
-    private void CollisionChecks()
+    private void HandleCollision()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
@@ -51,6 +49,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
+
     }
 
     private void Movement()
@@ -60,8 +59,8 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(isGrounded)
-          rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        if (isGrounded)
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
     private void AnimatorControllers()
@@ -71,6 +70,14 @@ public class Player : MonoBehaviour
         anim.SetBool("isMoving", isMoving);
     }
 
+    private void HandleFlip()
+    {
+        if (rb.linearVelocity.x > 0 && !facingRight)
+            Flip();
+
+        else if (rb.linearVelocity.x < 0 && facingRight)
+            Flip();
+    }
     private void Flip()
     {
         facingDir = facingDir * -1;
@@ -78,17 +85,9 @@ public class Player : MonoBehaviour
         transform.Rotate(0, 180, 0);
     }
 
-    private void FlipController()
-    {
-        if (rb.linearVelocity.x > 0 && !facingRight)
-            Flip();
-       
-        else if (rb.linearVelocity.x < 0 && facingRight)
-            Flip();
-    }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position,  new Vector3(transform.position.x, transform.position.y - groundCheckDistance));
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
     }
 }
